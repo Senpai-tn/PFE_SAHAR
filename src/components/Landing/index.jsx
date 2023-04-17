@@ -35,7 +35,7 @@ const Landing = () => {
         </Stack>
         <Stack width={'100%'} maxWidth={'790px'} alignItems={'flex-end'}>
           <img
-            src="/assets/images/landing.jpg"
+            src="/assets/images/landing.png"
             height={'450px'}
             width={'100%'}
             style={{
