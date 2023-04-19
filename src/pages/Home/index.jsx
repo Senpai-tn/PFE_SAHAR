@@ -9,11 +9,12 @@ import SectionSearcher from '../../components/SectionSearcher'
 import SectionHowItWork from '../../components/SectionHowItWork'
 import Features from '../../components/Features'
 import Footer from '../../components/Footer'
+import NavbarAuthentified from '../../components/NavbarAuthentified'
 
 const Home = () => {
   return (
     <Box>
-      <Navbar />
+      <NavbarAuthentified />
       <Landing />
       <Services />
       <SuggestionProvider />

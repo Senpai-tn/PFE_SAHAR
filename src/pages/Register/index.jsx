@@ -250,7 +250,6 @@ const Register = () => {
           pb={'20px'}
           textAlign={'center'}
           position={'absolute'}
-          bottom={0}
         >
           Already a user ?{' '}
           <Link
