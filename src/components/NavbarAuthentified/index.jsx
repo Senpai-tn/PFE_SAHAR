@@ -1,4 +1,4 @@
-import { Box, Link, Stack } from '@mui/material'
+import { Badge, Box, Link, Stack } from '@mui/material'
 import React from 'react'
 import Button from '@mui/material/Button'
 import Menu from '@mui/material/Menu'
@@ -10,10 +10,16 @@ import BarChartIcon from '@mui/icons-material/BarChart'
 import SettingsIcon from '@mui/icons-material/Settings'
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline'
 import ExitToAppIcon from '@mui/icons-material/ExitToApp'
+import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline'
+import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone'
+import { useDispatch, useSelector } from 'react-redux'
+import actions from '../../redux/actions'
 const NavbarAuthentified = () => {
+  const dispatch = useDispatch()
   const navigate = useNavigate()
+  const nom_user = useSelector((state) => state.nom_user)
   return (
-    <Box width={'100%'} height={'68px'} position={'relative'}>
+    <Box width={'100%'} height={'68px'} position={'relative'} id="navbar">
       <Stack
         direction={'row'}
         height={'100%'}
@@ -29,7 +35,6 @@ const NavbarAuthentified = () => {
           width={'60px'}
         />
         <Stack
-          id="navbar"
           direction={'row'}
           height={'100%'}
           width={'50%'}
@@ -45,6 +50,7 @@ const NavbarAuthentified = () => {
                   <MenuItem
                     onClick={() => {
                       popupState.close()
+                      navigate('/')
                     }}
                   >
                     All posts
@@ -107,13 +113,24 @@ const NavbarAuthentified = () => {
             )}
           </PopupState>
         </Stack>
-        <Box>
+        <Stack direction={'row'} alignItems={'center'} spacing={2}>
+          <ChatBubbleOutlineIcon />
+          <Badge badgeContent={1000} color="primary" max={9}>
+            <NotificationsNoneIcon />
+          </Badge>
           <PopupState variant="popover" popupId="demo-popup-menu">
             {(popupState) => (
               <React.Fragment>
-                <Button variant="contained" {...bindTrigger(popupState)}>
+                {/* <Button variant="contained" {...bindTrigger(popupState)}>
                   Profil
-                </Button>
+                </Button> */}
+                <img
+                  src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+                  height={'60px'}
+                  width={'60px'}
+                  style={{ borderRadius: '50%' }}
+                  {...bindTrigger(popupState)}
+                />
                 <Menu {...bindMenu(popupState)}>
                   <MenuItem
                     onClick={() => {
@@ -121,7 +138,7 @@ const NavbarAuthentified = () => {
                     }}
                   >
                     <PermIdentityIcon sx={{ mr: '10px' }} />
-                    View profile
+                    {nom_user}
                   </MenuItem>
                   <MenuItem
                     onClick={() => {
@@ -150,6 +167,8 @@ const NavbarAuthentified = () => {
                   <MenuItem
                     onClick={() => {
                       popupState.close()
+                      dispatch({ type: actions.logout })
+                      navigate('/')
                     }}
                   >
                     <ExitToAppIcon sx={{ mr: '10px' }} />
@@ -159,7 +178,7 @@ const NavbarAuthentified = () => {
               </React.Fragment>
             )}
           </PopupState>
-        </Box>
+        </Stack>
       </Stack>
     </Box>
   )

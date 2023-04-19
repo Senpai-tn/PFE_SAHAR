@@ -2,7 +2,7 @@ import React from 'react'
 import { Box, Button, Divider, Link, Stack, Typography } from '@mui/material'
 const Navbar = () => {
   return (
-    <Box width={'100%'} height={'68px'} position={'relative'}>
+    <Box width={'100%'} height={'68px'} position={'relative'} id="navbar">
       <Stack
         direction={'row'}
         height={'100%'}

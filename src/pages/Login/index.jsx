@@ -12,7 +12,12 @@ import React from 'react'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Controller, useForm } from 'react-hook-form'
 import { validation } from '../../validation'
+import { useDispatch } from 'react-redux'
+import actions from '../../redux/actions'
+import { useNavigate } from 'react-router-dom'
 const Login = () => {
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
   const { control, handleSubmit, setError } = useForm({
     defaultValues: { email: '', password: '' },
     resolver: yupResolver(validation.login()),
@@ -20,8 +25,9 @@ const Login = () => {
   const loginAction = (data) => {
     const { email, password } = data
     console.log(data)
-    //login
-    //setError('email', { message: 'Email not found' })
+    //axios
+    dispatch({ type: actions.login })
+    navigate('/')
   }
   return (
     <Stack justifyContent={'center'} alignItems={'center'} height={'100vh'}>

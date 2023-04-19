@@ -10,17 +10,19 @@ import SectionHowItWork from '../../components/SectionHowItWork'
 import Features from '../../components/Features'
 import Footer from '../../components/Footer'
 import NavbarAuthentified from '../../components/NavbarAuthentified'
+import { useSelector } from 'react-redux'
 
 const Home = () => {
+  const user = useSelector((state) => state.nom_user)
   return (
     <Box>
-      <NavbarAuthentified />
+      {user === null ? <Navbar /> : <NavbarAuthentified />}
       <Landing />
       <Services />
       <SuggestionProvider />
       <SectionProvider />
-      <SectionSearcher />
-      <SectionHowItWork />
+      {user !== null && <SectionSearcher />}
+      {user === null && <SectionHowItWork />}
       <Features />
       <Footer />
     </Box>
